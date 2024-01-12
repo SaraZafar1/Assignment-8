@@ -1,0 +1,111 @@
+<html> <title> 21 Dice Roller </title>
+<head>
+
+
+    <script>
+
+var one = 0; 
+var two = 0; 
+var three = 0; 
+var four = 0; 
+var five = 0; 
+var six = 0; 
+var seven = 0; 
+var eight = 0; 
+var nine = 0; 
+var ten = 0; 
+var rollValue = 0; 
+var compRoll = 0;
+var undo = 0; 
+
+function rollAction () {  
+if(document.getElementById("1").checked == false) {one = Math.floor(Math.random()*6+1);}
+if(document.getElementById("2").checked == false) {two = Math.floor(Math.random()*6+1);}
+if(document.getElementById("3").checked == false) {three = Math.floor(Math.random()*6+1);}
+if(document.getElementById("4").checked == false) {four = Math.floor(Math.random()*6+1);}
+if(document.getElementById("5").checked == false) {five = Math.floor(Math.random()*6+1);}
+if(document.getElementById("6").checked == false) {six = Math.floor(Math.random()*6+1);}
+if(document.getElementById("7").checked == false) {seven = Math.floor(Math.random()*6+1);}
+if(document.getElementById("8").checked == false) {eight = Math.floor(Math.random()*6+1);}
+if(document.getElementById("9").checked == false) {nine = Math.floor(Math.random()*6+1);}
+if(document.getElementById("10").checked == false) {ten = Math.floor(Math.random()*6+1);}
+
+if(six>4) {document.getElementById("6").checked = true;}
+if(seven>4) {document.getElementById("7").checked = true;}
+if(eight>4) {document.getElementById("8").checked = true;}
+if(nine>4) {document.getElementById("9").checked = true;}
+if(ten>4) {document.getElementById("10").checked = true;} 
+
+if(document.getElementById("6").checked == true && document.getElementById("7").checked == true && document.getElementById("8").checked == true && document.getElementById("9").checked == true && document.getElementById("10").checked == true) {document.getElementById("6").checked = false; document.getElementById("8").checked = false; document.getElementById("10").checked = false; }
+
+document.getElementById("firstDie").src = "" + one + ".png"; 
+document.getElementById("secondDie").src = "" + two + ".png"; 
+document.getElementById("thirdDie").src = "" + three + ".png"; 
+document.getElementById("fourthDie").src = "" + four + ".png"; 
+document.getElementById("fifthDie").src = "" + five + ".png"; 
+document.getElementById("sixthDie").src = "" + six + ".png"; 
+document.getElementById("seventhDie").src = "" + seven + ".png"; 
+document.getElementById("eighthDie").src = "" + eight + ".png"; 
+document.getElementById("ninthDie").src = "" + nine + ".png"; 
+document.getElementById("tenthDie").src = "" + ten + ".png"; 
+
+        rollValue = one+two+three+four+five;
+        compRoll = six+seven+eight+nine+ten; 
+    document.getElementById("userRoll").innerHTML = "You rolled " + rollValue + "."; 
+    document.getElementById("computerRoll").innerHTML = "I rolled " + compRoll + "."; 
+
+    var yScore = 0; 
+    var cScore = 0; 
+
+    if(rollValue==21 && compRoll!=21) {document.getElementById("verdict").innerHTML = "THE VERDICT: YOU WIN!!!"; yScore++; document.getElementById("userScore").innerHTML = "Your Score: " + yScore; document.getElementById("Roll").disabled = "true";}
+    if(rollValue!=21 && compRoll!=21) {document.getElementById("verdict").innerHTML = "THE VERDICT: NO ONE WINS! :(";}
+    if(rollValue!=21 && compRoll==21) {document.getElementById("verdict").innerHTML = "THE VERDICT: I WIN!!! :)"; document.getElementById("Roll").disabled = "true"; cScore++; document.getElementById("compScore").innerHTML = "My Score: " + cScore; }
+    if(rollValue==21 && compRoll==21) {document.getElementById("verdict").innerHTML = "THE VERDICT: IT'S A TIE!"; }
+
+} 
+
+function resetGame () { 
+    document.getElementById("Roll").disabled = false; 
+    document.getElementById("verdict").innerHTML = "";
+    document.getElementById("userRoll").innerHTML = "You rolled: ";  
+    document.getElementById("computerRoll").innerHTML = "I rolled: ";  
+    document.getElementById("1").checked = false; 
+    document.getElementById("2").checked = false;
+    document.getElementById("3").checked = false;
+    document.getElementById("4").checked = false;
+    document.getElementById("5").checked = false;
+    document.getElementById("6").checked = false;
+    document.getElementById("7").checked = false;
+    document.getElementById("8").checked = false;
+    document.getElementById("9").checked = false;
+    document.getElementById("10").checked = false;
+}
+
+    </script>
+</head>
+
+    <body style="background-color: pink ;"> <center>
+<br>
+<center> <h1> Roll 21 First to Win! </h1></center> <Br> 
+<h2 id="userScore"> Your Score:  0 </h2>
+<br> 
+<img id="firstDie" src="1.png" height="100px" width="100px"> <img id="secondDie" src="1.png" height="100px" width="100px"> <img id="thirdDie" src="1.png" height="100px" width="100px">  <img id="fourthDie" src="1.png" height="100px" width="100px"> <img id="fifthDie" src="1.png" height="100px" width="100px"> 
+<h4 id="checks"> &nbsp; &nbsp; &nbsp; Die 1 <input type="checkbox" id="1" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Die 2 <input type="checkbox" id="2" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp; Die 3 <input type="checkbox" id="3" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp; Die 4 <input type="checkbox" id="4" value="checked"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Die 5 <input type="checkbox" id="5" value="checked">  </h4>
+<button id="Roll" onclick="rollAction()";> Play </button> <h4 id="userRoll"> You rolled: </h4>
+<br> 
+<h3 id="verdict" style="color:red"></h3>
+<br> 
+<h2 id="compScore"> My Score: 0 </h2>
+<br> 
+<img id="sixthDie" src="1.png" height="100px" width="100px"> <img id="seventhDie" src="1.png" height="100px" width="100px"> <img id="eighthDie" src="1.png" height="100px" width="100px">  <img id="ninthDie" src="1.png" height="100px" width="100px"> <img id="tenthDie" src="1.png" height="100px" width="100px"> 
+<h4 id="checks"> &nbsp; &nbsp; &nbsp; Die 6 <input type="checkbox" id="6" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  Die 7 <input type="checkbox" id="7" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp;   &nbsp; &nbsp; Die 8 <input type="checkbox" id="8" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp;  Die 9 <input type="checkbox" id="9" value="checked">  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; Die 10 <input type="checkbox" id="10" value="checked">  </h4>
+<h4 id="computerRoll"> I rolled: </h4>
+<br> <br> 
+<button id="Reset" onclick="resetGame()"> Play Again! </button>
+
+    </body> </center>
+
+
+
+
+</html>
